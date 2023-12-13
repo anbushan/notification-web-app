@@ -28,7 +28,7 @@ const Sidebar = () => {
 
       {/* Small screens */}
       <Row className="d-flex d-lg-none rounded">
-        <Col xs={12} className="text-end">
+        <Col xs={12} className="text-end mt-2 mb-3">
           <MdMenu
             size={25}
             style={{ cursor: "pointer", color: "black" }}
@@ -39,16 +39,18 @@ const Sidebar = () => {
           scroll={true}
           show={show}
           onHide={handleClose}
-          className="offcanvas-responsive " style={{width:280}}
+          className="offcanvas-responsive "
+          style={{ width: 280 }}
         >
-          <Offcanvas.Header closeButton className="justify-content-end"   />
-          <Offcanvas.Body style={{ backgroundColor: "#F5F6FA"}}>
-            <SidebarComponent onClick={handleClose} sidebarItems={sidebarItems} />
+          <Offcanvas.Header closeButton className="justify-content-end" />
+          <Offcanvas.Body style={{ backgroundColor: "white" }}>
+            <SidebarComponent
+              onClick={handleClose}
+              sidebarItems={sidebarItems}
+            />
           </Offcanvas.Body>
         </Offcanvas>
       </Row>
-
-      
     </div>
   );
 };
