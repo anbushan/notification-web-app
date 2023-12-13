@@ -1,96 +1,100 @@
-import React, { useState } from "react";
-import { Button, Container, Row } from "react-bootstrap";
-import BasicTable from "../Components/BasicTable";
-import { useNavigate } from "react-router-dom";
-import { MdDelete } from "react-icons/md";
-import Header from "../Components/Header";
-import DeleteModel from "../Components/DeleteModal";
-import axios from "axios";
+import React, { useState } from 'react'
+import { Button, Container, Row } from 'react-bootstrap'
+import BasicTable from '../Components/BasicTable'
+import { useNavigate } from 'react-router-dom'
+import { MdDelete } from 'react-icons/md'
+import Header from '../Components/Header'
+import DeleteModel from '../Components/DeleteModal'
+import axios from 'axios'
 
 const Products = () => {
-  const [deleteShow, setDeleteShow] = useState(false);
-  const [deleteId, setDeleteId] = useState();
+  const [deleteShow, setDeleteShow] = useState(false)
+  const [deleteId, setDeleteId] = useState()
 
-  const navigate = useNavigate();
-  const handleNavigateAddForm = () => navigate("/notify-add");
+  const navigate = useNavigate()
+  const handleNavigateAddForm = () => navigate('/notify-add')
 
   const deleteHandleClose = () => {
-    setDeleteShow(false);
-  };
+    setDeleteShow(false)
+  }
 
   const deleteHandleShow = async (id) => {
-    setDeleteShow(true);
-    setDeleteId(id);
-  };
+    setDeleteShow(true)
+    setDeleteId(id)
+  }
 
   const handleDeleteConfirmation = async (id) => {
     try {
       const response = await axios.delete(
-        `https://notification-mysql-48f715723b35.herokuapp.com/v1/api/delete-push-notification/${id}`
-      );
+        `https://notification-mysql-48f715723b35.herokuapp.com/v1/api/delete-push-notification/${id}`,
+      )
 
       if (response) {
-        window.location.reload();
+        window.location.reload()
         // Optionally, you can update your component state or perform any other actions after deletion.
       } else {
-        console.error("Error deleting notification:", response.statusText);
+        console.error('Error deleting notification:', response.statusText)
       }
     } catch (error) {
-      console.error("Error deleting notification:", error);
+      console.error('Error deleting notification:', error)
     } finally {
       // Close your delete modal or update your state as needed
-      setDeleteShow(false);
+      setDeleteShow(false)
     }
-  };
+  }
 
   const COLUMNS = [
     {
-      Header: " Notification ID",
-      accessor: "NotificationId",
+      Header: ' Notification ID',
+      accessor: 'NotificationId',
     },
     {
-      Header: "Image",
+      Header: 'Created At',
+      accessor: 'date',
+    },
+    {
+      Header: 'Image',
       disableSortBy: true,
       Cell: (props) => {
-        const imageAccessKey = props.row.original.image; // Assuming 'image' is the key for the access key
+        const imageAccessKey = props.row.original.image // Assuming 'image' is the key for the access key
         return (
           <img
             src={imageAccessKey}
             alt="Product Img"
-            style={{ width: "50px", height: "50px" }}
+            style={{ width: '50px', height: '50px' }}
           />
-        );
+        )
       },
     },
     {
-      Header: "Title",
-      accessor: "title",
+      Header: 'Title',
+      accessor: 'title',
     },
     {
-      Header: "Message",
-      accessor: "message",
+      Header: 'Message',
+      accessor: 'message',
     },
     {
-      Header: "Link",
-      accessor: "link",
+      Header: 'Link',
+      accessor: 'link',
       disableSortBy: true,
 
       Cell: (props) => {
-        const imageAccessKey = props.row.original.link; // Assuming 'image' is the key for the access key
+        const imageAccessKey = props.row.original.link // Assuming 'image' is the key for the access key
         return (
           <a href={imageAccessKey} target="_blank" rel="noreferrer">
-            {" "}
+            {' '}
             {imageAccessKey}
           </a>
-        );
+        )
       },
     },
     {
-      Header: "Action",
-      accessor: "action",
+      Header: 'Action',
+      accessor: 'action',
       disableSortBy: true,
       Cell: (props) => {
-        const rowIdx = props.row.original.refer_notification_id;
+        const rowIdx = props.row.original.refer_notification_id
         return (
           <div className="d-flex align-items-center justify-content-center flex-row">
             <Button
@@ -101,10 +105,10 @@ const Products = () => {
               <MdDelete />
             </Button>
           </div>
-        );
+        )
       },
     },
-  ];
+  ]
 
   return (
     <div>
@@ -121,9 +125,9 @@ const Products = () => {
           <Row
             className="my-5 rounded mt-3"
             style={{
-              backgroundColor: "white",
-              width: "100%", // Default width for large screens
-              margin: "auto",
+              backgroundColor: 'white',
+              width: '100%', // Default width for large screens
+              margin: 'auto',
             }}
           >
             <BasicTable COLUMNS={COLUMNS} />
@@ -139,7 +143,7 @@ const Products = () => {
         />
       </>
     </div>
-  );
-};
+  )
+}
 
-export default Products;
+export default Products
