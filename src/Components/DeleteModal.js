@@ -1,5 +1,5 @@
-import React from "react";
-import { Button, Modal } from "react-bootstrap";
+import React from 'react'
+import { Button, Modal } from 'react-bootstrap'
 
 const DeleteModel = (props) => {
   return (
@@ -22,7 +22,7 @@ const DeleteModel = (props) => {
         </Modal.Footer>
       </Modal>
     </div>
-  );
-};
+  )
+}
 
-export default DeleteModel;
+export default DeleteModel

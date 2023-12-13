@@ -1,11 +1,35 @@
-import React from 'react';
-import { Form } from 'react-bootstrap';
+import React from 'react'
+import { Form } from 'react-bootstrap'
 const TextInput = (props) => {
-  const { label,name,id, type, placeholder,htmlFor,lableClassName, value, onChange,onBlur,
-    disabled, className,lg,md,xxl,xl,sm,validation,star} = props;
+  const {
+    label,
+    name,
+    id,
+    type,
+    placeholder,
+    htmlFor,
+    lableClassName,
+    value,
+    onChange,
+    onBlur,
+    disabled,
+    className,
+    lg,
+    md,
+    xxl,
+    xl,
+    sm,
+    validation,
+    star,
+  } = props
   return (
-    <Form.Group >
-      <Form.Label htmlFor={htmlFor} className={lableClassName}>{label}<span className={`text-danger ${star==='none'?`d-${star}`:""}`}>*</span></Form.Label>
+    <Form.Group>
+      <Form.Label htmlFor={htmlFor} className={lableClassName}>
+        {label}
+        <span className={`text-danger ${star === 'none' ? `d-${star}` : ''}`}>
+          *
+        </span>
+      </Form.Label>
       <Form.Control
         name={name}
         id={id}
@@ -24,6 +48,6 @@ const TextInput = (props) => {
       />
       {validation}
     </Form.Group>
-  );
-};
-export default TextInput;
+  )
+}
+export default TextInput
