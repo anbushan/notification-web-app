@@ -175,11 +175,11 @@ const Notification = () => {
         }) => (
           <>
             <Row className="d-flex flex-row justify-content-between align-items-center mt-4">
-              <Col className="d-flex justify-content-start align-items-center">
+              <Col className="d-flex mt-4 justify-content-start align-items-center">
                 <AiOutlineArrowLeft
                   onClick={handleCancel}
                   size={25}
-                  className="m-1 pointer"
+                  className="mt-1 m-1 pointer"
                 />
                 <h5 className="fw-bold mt-1">&nbsp;Add Notification</h5>
               </Col>
@@ -214,7 +214,7 @@ const Notification = () => {
               <Col className="m-0 p-4 d-flex flex-wrap flex-column align-items-start justify-content-start shadow rounded bg-white">
                 <Col className="col-12" lg="5" xl="5" md="12" sm="12">
                   <TextInput
-                    name="title"
+                    name="title" 
                     label="Title"
                     onChange={(e) => {
                       setTitle(e.target.value);
@@ -222,7 +222,7 @@ const Notification = () => {
                     }}
                     onBlur={handleBlur}
                     placeholder="Enter title here.. "
-                    className={`mb-4 input ${
+                    className={` input ${
                       touched.title && errors.title ? "is-invalid" : ""
                     }`}
                     validation={
@@ -242,7 +242,7 @@ const Notification = () => {
                     }}
                     onBlur={handleBlur}
                     placeholder="Enter message here.. "
-                    className={`mb-4 input ${
+                    className={` input ${
                       touched.message && errors.message ? "is-invalid" : ""
                     }`}
                     validation={
@@ -256,14 +256,14 @@ const Notification = () => {
 
                   <TextInput
                     name="linkto"
-                    label="Link To"
+                    label="Link "
                     onChange={(e) => {
                       setLinkTo(e.target.value);
                       handleChange(e);
                     }}
                     onBlur={handleBlur}
                     placeholder="Enter link here.. "
-                    className={`mb-4 input ${
+                    className={` input ${
                       touched.linkto && errors.linkto ? "is-invalid" : ""
                     }`}
                     validation={
@@ -293,7 +293,7 @@ const Notification = () => {
                       <>
                         <img
                           src={imagePreview}
-                          alt="Image Preview"
+                          alt="Img Preview"
                           style={{ maxWidth: "100%", marginTop: "10px" }}
                         />
                         <p
