@@ -6,15 +6,11 @@
   font-size: 15px;
 }
 
-
-/* Tablet view */
-/* 
-/* For mobile view 
 @media (max-width: 767.98px) {
   master .offcanvas-responsive {
     width: 40%;
   }
-} */
+}
 
 @media (max-width: 767px) {
   /* Mobile view */
