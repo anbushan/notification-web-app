@@ -64,7 +64,7 @@ const BasicTable = (props) => {
 
   return (
     <div>
-      <Container>
+     
         <Row className="">
           <Form className="d-flex flex-lg-row flex-column flex-xxl-row flex-xl-row flex-sm-column flex-md-row">
             <Col className="mb-4 mt-4" xxl={3} xl={3} lg={3} sm={3} md={3}>
@@ -219,7 +219,7 @@ const BasicTable = (props) => {
             </Col>
           </Col>
         </Row>
-      </Container>
+     
     </div>
   );
 };
