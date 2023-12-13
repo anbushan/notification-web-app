@@ -56,7 +56,7 @@ const Products = () => {
         return (
           <img
             src={imageAccessKey}
-            alt="Product Image"
+            alt="Product Img"
             style={{ width: "50px", height: "50px" }}
           />
         );
@@ -71,14 +71,14 @@ const Products = () => {
       accessor: "message",
     },
     {
-      Header: "Link To",
+      Header: "Link",
       accessor: "link",
       disableSortBy: true,
 
       Cell: (props) => {
         const imageAccessKey = props.row.original.link; // Assuming 'image' is the key for the access key
         return (
-          <a href={imageAccessKey} target="_blank">
+          <a href={imageAccessKey} target="_blank" rel="noreferrer">
             {" "}
             {imageAccessKey}
           </a>
@@ -86,7 +86,7 @@ const Products = () => {
       },
     },
     {
-      Header: "ACTION",
+      Header: "Action",
       accessor: "action",
       disableSortBy: true,
       Cell: (props) => {
@@ -95,7 +95,7 @@ const Products = () => {
           <div className="d-flex align-items-center justify-content-center flex-row">
             <Button
               variant="danger"
-              className="m-1"
+              // className="m-1"
               onClick={() => deleteHandleShow(rowIdx)}
             >
               <MdDelete />
@@ -111,7 +111,7 @@ const Products = () => {
       <>
         <Container fluid className="m-0 p-0">
           {/* Updated styles for margin and padding */}
-          <Row className="m-0 rounded">
+          <Row className="mt-5 rounded">
             <Header
               ONCLICK={handleNavigateAddForm}
               HEADING="Notifications"

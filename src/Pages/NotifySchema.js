@@ -8,5 +8,5 @@ export const notifySchema = yup.object().shape({
     .string()
     .matches(urlRegex, "URL is not valid")
     .required("Must be required your Link."),
-  image: yup.string().required("Please provide an image."),
+  image: yup.string().required("Please provide an Image."),
 });
