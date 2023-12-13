@@ -1,9 +1,9 @@
 import React from "react";
 import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+import logoImg from '../Assets/144.png'
 
 const SidebarComponent = ({ sidebarItems, onClick }) => {
-  const location = useLocation();
 
   const renderMenuItems = (items) => {
     return items.map((item) => {
@@ -101,7 +101,9 @@ const SidebarComponent = ({ sidebarItems, onClick }) => {
         <a href="/">
           <img
             alt="logo"
-            src="https://www.tiwtaw.com/image/cache/catalog/1111/tiwtaw11-189x61.png"
+            src={logoImg}
+            width={'100px'}
+            height={'100px'}
           />
         </a>
       </div>
