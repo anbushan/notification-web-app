@@ -7,6 +7,7 @@ import Header from '../Components/Header'
 import DeleteModel from '../Components/DeleteModal'
 import axios from 'axios'
 import moment from 'moment'
+import defaultImage from '../Assets/defaultImage.png'
 
 const Products = () => {
   const [deleteShow, setDeleteShow] = useState(false)
@@ -56,11 +57,16 @@ const Products = () => {
       Cell: (props) => {
         const imageAccessKey = props.row.original.image // Assuming 'image' is the key for the access key
         return (
+          props.row.original.image?
           <img
             src={imageAccessKey}
             alt="Product Img"
             style={{ width: '50px', height: '50px' }}
-          />
+          /> :  <img
+          src={defaultImage}
+          alt="Product Img"
+          style={{ width: '50px', height: '50px' }}
+        />
         )
       },
     },

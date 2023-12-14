@@ -11,7 +11,7 @@ import { useDropzone } from 'react-dropzone'
 import { IoCloudUploadOutline } from 'react-icons/io5'
 import axios from 'axios' // Import Axios
 import { toast } from 'react-toastify'
-import EmojiPickers from '../Components/EmojiPickers'
+import EmojiPicker, { EmojiStyle } from 'emoji-picker-react'
 
 const Notification = () => {
   const [title, setTitle] = useState('')
@@ -21,6 +21,7 @@ const Notification = () => {
   const [imagePreview, setImagePreview] = useState(null)
   const acceptedImageTypes = ['image/jpeg', 'image/png', 'image/gif']
   const [isSaving, setIsSaving] = useState(false) // New state for loading
+  const [inputValue, setInputValue] = useState('')
 
   const navigate = useNavigate()
   const handleCancel = () => {
@@ -47,6 +48,16 @@ const Notification = () => {
     setFieldValue('image', '')
   }
 
+
+
+  function onClick(emojiData, event) {
+    setInputValue(
+      (inputValue) =>
+        inputValue + (emojiData.isCustom ? emojiData.unified : emojiData.emoji),
+    )
+  }
+
+
   const handleAddData = (values) => {
     setIsSaving(true)
     const headers = {
@@ -59,8 +70,10 @@ const Notification = () => {
       message: message,
       image: imagePreview,
       link: linkto,
+      emoji: inputValue
     }
 
+ 
     axios
       .post(
         'https://notification-mysql-48f715723b35.herokuapp.com/v1/api/send-push-notification',
@@ -260,7 +273,26 @@ const Notification = () => {
                   />
 
                   <Col className="mt-2">
-                    <EmojiPickers />
+                  <div>
+      <div>
+       
+         <TextInput
+         star={"none"}
+                   className="text-input"
+                   type="text"
+                   value={inputValue}
+                   onChange={(e) => setInputValue(e.target.value)}
+                   placeholder="Select Emojis..."
+                   label="Emoji"
+                  />
+
+      </div>
+      <EmojiPicker
+        onEmojiClick={onClick}
+        autoFocusSearch={false}
+        emojiStyle={EmojiStyle.NATIVE}
+      />
+    </div>
                   </Col>
 
                   <Col className="mt-2" />

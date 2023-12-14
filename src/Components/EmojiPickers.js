@@ -1,6 +1,7 @@
 import EmojiPicker, { EmojiStyle } from 'emoji-picker-react'
 import { useState } from 'react'
 import * as React from 'react'
+import TextInput from './TextInput'
 
 export default function EmojiPickers() {
   const [inputValue, setInputValue] = useState('')
@@ -15,13 +16,17 @@ export default function EmojiPickers() {
   return (
     <div>
       <div>
-        <input
-          className="text-input"
-          type="text"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Select Emojis..."
-        />
+       
+         <TextInput
+         star={"none"}
+                   className="text-input"
+                   type="text"
+                   value={inputValue}
+                   onChange={(e) => setInputValue(e.target.value)}
+                   placeholder="Select Emojis..."
+                   label="Emoji"
+                  />
+
       </div>
       <EmojiPicker
         onEmojiClick={onClick}
