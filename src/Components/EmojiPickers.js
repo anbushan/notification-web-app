@@ -1,27 +1,19 @@
-import EmojiPicker, {
-  EmojiStyle,
-  Emoji,
- 
-} from "emoji-picker-react";
-import { useState } from "react";
-import * as React from "react";
+import EmojiPicker, { EmojiStyle } from 'emoji-picker-react'
+import { useState } from 'react'
+import * as React from 'react'
 
 export default function EmojiPickers() {
-  const [selectedEmoji, setSelectedEmoji] = useState("1f60a");
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState('')
 
   function onClick(emojiData, event) {
     setInputValue(
       (inputValue) =>
-        inputValue + (emojiData.isCustom ? emojiData.unified : emojiData.emoji)
-    );
-    setSelectedEmoji(emojiData.unified);
+        inputValue + (emojiData.isCustom ? emojiData.unified : emojiData.emoji),
+    )
   }
 
   return (
     <div>
-    
-     
       <div>
         <input
           className="text-input"
@@ -37,5 +29,5 @@ export default function EmojiPickers() {
         emojiStyle={EmojiStyle.NATIVE}
       />
     </div>
-  );
+  )
 }

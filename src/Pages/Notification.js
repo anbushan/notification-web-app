@@ -259,8 +259,8 @@ const Notification = () => {
                     }
                   />
 
-                  <Col className="mt-2"> 
-                  <EmojiPickers/>
+                  <Col className="mt-2">
+                    <EmojiPickers />
                   </Col>
 
                   <Col className="mt-2" />

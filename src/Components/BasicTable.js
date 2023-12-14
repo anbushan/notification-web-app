@@ -31,7 +31,6 @@ const BasicTable = (props) => {
         setTableData(response?.data?.data || [])
         setTotalPages(response?.data?.pagination?.totalPages || 1)
         setTotal(response?.data?.pagination?.totalCount || 1)
-
       })
       .catch((error) => {
         console.log('AxiosError:', error)
