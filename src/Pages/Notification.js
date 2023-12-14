@@ -21,7 +21,9 @@ const Notification = () => {
   const [imagePreview, setImagePreview] = useState(null)
   const acceptedImageTypes = ['image/jpeg', 'image/png', 'image/gif']
   const [isSaving, setIsSaving] = useState(false) // New state for loading
-  const [inputValue, setInputValue] = useState('')
+  const [inputTitle, setInputTitle] = useState('')
+  const [inputMessage, setInputMessage] = useState('')
+  const [file, setFile] = useState(null)
 
   const navigate = useNavigate()
   const handleCancel = () => {
@@ -49,11 +51,19 @@ const Notification = () => {
   }
 
 
+  function onClickMessage(emojiData, event) {
+    setInputMessage(
+      (inputMessage) =>
+      inputMessage + (emojiData.isCustom ? emojiData.unified : emojiData.emoji),
+    )
+  }
+
+
 
   function onClick(emojiData, event) {
-    setInputValue(
-      (inputValue) =>
-        inputValue + (emojiData.isCustom ? emojiData.unified : emojiData.emoji),
+    setInputTitle(
+      (inputTitle) =>
+      inputTitle + (emojiData.isCustom ? emojiData.unified : emojiData.emoji),
     )
   }
 
@@ -62,18 +72,27 @@ const Notification = () => {
     setIsSaving(true)
     const headers = {
       Authorization: 'YourAuthorizationToken', // Replace with your actual token
-      'Content-Type': 'application/json',
+      "Content-Type": "multipart/form-data",
     }
 
     const data = {
-      title: title,
-      message: message,
-      image: imagePreview,
+      title: inputTitle,
+      message: inputMessage,
+      image: file,
       link: linkto,
-      emoji: inputValue
+     
     }
+    const formData = new FormData();
 
- 
+    formData.append("title", inputTitle);
+
+    formData.append("message", inputMessage);
+
+    formData.append("file", file);
+
+    formData.append("link", linkto);
+
+
     axios
       .post(
         'https://notification-mysql-48f715723b35.herokuapp.com/v1/api/send-push-notification',
@@ -140,6 +159,7 @@ const Notification = () => {
           // Set image preview and update Formik field
           setImagePreview(resizedImage)
           setFieldValue('image', resizedImage)
+          setFile(file)
         }
       }
 
@@ -212,13 +232,13 @@ const Notification = () => {
                   label={isSaving ? 'Sending...' : 'Send'}
                   onClick={
                     title === '' ||
-                    message === '' ||
-                    linkto === '' ||
-                    image === '' ||
-                    (touched.title && errors.title) ||
-                    (touched.message && errors.message) ||
-                    (touched.linkto && errors.linkto) ||
-                    (touched.image && errors.image)
+                      message === '' ||
+                      linkto === '' ||
+                      image === '' ||
+                      (touched.title && errors.title) ||
+                      (touched.message && errors.message) ||
+                      (touched.linkto && errors.linkto) ||
+                      (touched.image && errors.image)
                       ? handleSubmit
                       : () => handleAddData({ values, setFieldValue })
                   }
@@ -234,14 +254,14 @@ const Notification = () => {
                     name="title"
                     label="Title"
                     onChange={(e) => {
-                      setTitle(e.target.value)
+                      setInputTitle(e.target.value)
                       handleChange(e)
                     }}
+                    value={inputTitle}
                     onBlur={handleBlur}
                     placeholder="Enter title here.. "
-                    className={`input ${
-                      touched.title && errors.title ? 'is-invalid' : ''
-                    }`}
+                    className={`input ${touched.title && errors.title ? 'is-invalid' : ''
+                      }`}
                     validation={
                       touched.title && errors.title ? (
                         <p className="text-danger">{errors.title}</p>
@@ -250,19 +270,24 @@ const Notification = () => {
                       )
                     }
                   />
+                  <EmojiPicker
+                    onEmojiClick={onClick}
+                    autoFocusSearch={false}
+                    emojiStyle={EmojiStyle.NATIVE}
+                  />
                   <Col className="mt-2" />
                   <TextArea
                     name="message"
                     label="Message"
                     onChange={(e) => {
-                      setMessage(e.target.value)
+                      setInputMessage(e.target.value)
                       handleChange(e)
                     }}
                     onBlur={handleBlur}
                     placeholder="Enter message here.. "
-                    className={`  input ${
-                      touched.message && errors.message ? 'is-invalid' : ''
-                    }`}
+                    className={`  input ${touched.message && errors.message ? 'is-invalid' : ''
+                      }`}
+                      value={inputMessage}
                     validation={
                       touched.message && errors.message ? (
                         <p className="text-danger">{errors.message}</p>
@@ -271,29 +296,13 @@ const Notification = () => {
                       )
                     }
                   />
-
-                  <Col className="mt-2">
-                  <div>
-      <div>
-       
-         <TextInput
-         star={"none"}
-                   className="text-input"
-                   type="text"
-                   value={inputValue}
-                   onChange={(e) => setInputValue(e.target.value)}
-                   placeholder="Select Emojis..."
-                   label="Emoji"
+                  <EmojiPicker
+                    onEmojiClick={onClickMessage}
+                    autoFocusSearch={false}
+                    emojiStyle={EmojiStyle.NATIVE}
                   />
 
-      </div>
-      <EmojiPicker
-        onEmojiClick={onClick}
-        autoFocusSearch={false}
-        emojiStyle={EmojiStyle.NATIVE}
-      />
-    </div>
-                  </Col>
+                
 
                   <Col className="mt-2" />
                   <TextInput
@@ -305,9 +314,8 @@ const Notification = () => {
                     }}
                     onBlur={handleBlur}
                     placeholder="Enter link here.. "
-                    className={` input ${
-                      touched.linkto && errors.linkto ? 'is-invalid' : ''
-                    }`}
+                    className={` input ${touched.linkto && errors.linkto ? 'is-invalid' : ''
+                      }`}
                     validation={
                       touched.linkto && errors.linkto ? (
                         <p className="text-danger">{errors.linkto}</p>
@@ -370,13 +378,13 @@ const Notification = () => {
                   label={isSaving ? 'Sending...' : 'Send'}
                   onClick={
                     title === '' ||
-                    message === '' ||
-                    linkto === '' ||
-                    image === '' ||
-                    (touched.title && errors.title) ||
-                    (touched.message && errors.message) ||
-                    (touched.linkto && errors.linkto) ||
-                    (touched.image && errors.image)
+                      message === '' ||
+                      linkto === '' ||
+                      image === '' ||
+                      (touched.title && errors.title) ||
+                      (touched.message && errors.message) ||
+                      (touched.linkto && errors.linkto) ||
+                      (touched.image && errors.image)
                       ? handleSubmit
                       : () => handleAddData({ values, setFieldValue })
                   }

@@ -70,22 +70,7 @@ const Products = () => {
         )
       },
     },
-    {
-      Header: 'Date',
-      accessor: 'date',
-      Cell: (props) => {
-        const date = props.row.original.date
-        console.log(date, 'date')
-        if (date) {
-          // Format the date using moment.js
-          const formattedDate = moment(date, 'DD/MM/YYYY, h:mm:ss a').format(
-            'DD-MM-YYYY',
-          )
-          // Render the formatted date
-          return <span>{formattedDate}</span>
-        }
-      },
-    },
+  
     {
       Header: 'Title',
       accessor: 'title',
