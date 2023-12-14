@@ -5,6 +5,11 @@ module.exports = {
     rules: {
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
+      "extends": ["eslint:recommended", "plugin:prettier/recommended"],
+       "rules": {
+         "prettier/prettier": ["error", {}, { "usePrettierrc": true }]
+           }
     },
+    
   };
   
