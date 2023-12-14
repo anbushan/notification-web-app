@@ -19,6 +19,7 @@ const BasicTable = (props) => {
   const columns = useMemo(() => props.COLUMNS)
   const [tableData, setTableData] = useState([])
   const [totalPages, setTotalPages] = useState(1)
+  const [total, setTotal] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
@@ -29,6 +30,8 @@ const BasicTable = (props) => {
       .then((response) => {
         setTableData(response?.data?.data || [])
         setTotalPages(response?.data?.pagination?.totalPages || 1)
+        setTotal(response?.data?.pagination?.totalCount || 1)
+
       })
       .catch((error) => {
         console.log('AxiosError:', error)
@@ -160,11 +163,7 @@ const BasicTable = (props) => {
           } flex-row justify-content-center align-items-center`}
         >
           <span className="m-1 d-flex justify-content-start align-items-center">
-            Showing 1 to
-            <strong className="m-2">
-              {state.pageIndex + 1} of {totalPages}
-            </strong>
-            entites
+            Showing 1 to {(state.pageIndex + 1) * 10} of {total} entites
           </span>
 
           <Col className="d-none d-sm-none d-md-none d-xxl-flex d-xl-flex d-lg-flex justify-content-end align-items-center">

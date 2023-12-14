@@ -1,5 +1,6 @@
 module.exports = {
-    extends: ['react-app', 'plugin:prettier/recommended'],
+    extends: ['react-app','eslint:recommended', 'prettier', 'plugin:prettier/recommended'],
+
     plugins: ['react', 'import', 'jsx-a11y', 'react-hooks'],
     rules: {
       'react-hooks/rules-of-hooks': 'error',

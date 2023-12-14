@@ -6,6 +6,7 @@ import { MdDelete } from 'react-icons/md'
 import Header from '../Components/Header'
 import DeleteModel from '../Components/DeleteModal'
 import axios from 'axios'
+import moment  from 'moment'
 
 const Products = () => {
   const [deleteShow, setDeleteShow] = useState(false)
@@ -45,13 +46,10 @@ const Products = () => {
 
   const COLUMNS = [
     {
-      Header: ' Notification ID',
+      Header: ' ID',
       accessor: 'NotificationId',
     },
-    {
-      Header: 'Created At',
-      accessor: 'date',
-    },
+   
     {
       Header: 'Image',
       disableSortBy: true,
@@ -64,6 +62,21 @@ const Products = () => {
             style={{ width: '50px', height: '50px' }}
           />
         )
+      },
+    },
+    {
+      Header: 'Date',
+      accessor: 'date',
+      Cell: (props ) => {
+        const date = props.row.original.date 
+        console.log(date, 'date')
+        if(date) {
+        // Format the date using moment.js
+        const formattedDate = moment(date, 'DD/MM/YYYY, h:mm:ss a').format('DD-MM-YYYY');
+        // Render the formatted date
+        return <span>{formattedDate}</span>;
+        }
+       
       },
     },
     {

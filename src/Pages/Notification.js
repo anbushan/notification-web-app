@@ -11,11 +11,12 @@ import { useDropzone } from 'react-dropzone'
 import { IoCloudUploadOutline } from 'react-icons/io5'
 import axios from 'axios' // Import Axios
 import { toast } from 'react-toastify'
+import EmojiPickers from '../Components/EmojiPickers'
 
 const Notification = () => {
   const [title, setTitle] = useState('')
   const [message, setMessage] = useState('')
-  const [image, setImage] = useState(null)
+  const [image] = useState(null)
   const [linkto, setLinkTo] = useState('')
   const [imagePreview, setImagePreview] = useState(null)
   const acceptedImageTypes = ['image/jpeg', 'image/png', 'image/gif']
@@ -195,7 +196,7 @@ const Notification = () => {
                 <BasicButton
                   className="m-1 mb-4"
                   type="submit"
-                  label={isSaving ? 'Saving...' : 'Save'}
+                  label={isSaving ? 'Sending...' : 'Send'}
                   onClick={
                     title === '' ||
                     message === '' ||
@@ -257,6 +258,10 @@ const Notification = () => {
                       )
                     }
                   />
+
+                  <Col className="mt-2"> 
+                  <EmojiPickers/>
+                  </Col>
 
                   <Col className="mt-2" />
                   <TextInput
@@ -330,7 +335,7 @@ const Notification = () => {
                 <BasicButton
                   className="m-1"
                   type="submit"
-                  label="Save"
+                  label={isSaving ? 'Sending...' : 'Send'}
                   onClick={
                     title === '' ||
                     message === '' ||
