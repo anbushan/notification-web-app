@@ -1,42 +1,45 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from 'react'
 import {
   useTable,
   useSortBy,
   usePagination,
   useGlobalFilter,
-} from "react-table";
-import { Button, Col,  Form, Row, Table } from "react-bootstrap";
-import { BiLeftArrow, BiRightArrow } from "react-icons/bi";
-import { FaSort } from "react-icons/fa";
-import ReactPaginate from "react-paginate";
-import axios from "axios"; // Import Axios
-import "bootstrap/dist/css/bootstrap.min.css"; // Import Bootstrap CSS
-import { AiFillLeftCircle, AiFillRightCircle } from "react-icons/ai"; // icons form react-icons
-import { IconContext } from "react-icons"; // for customizing icons
+} from 'react-table'
+import { Button, Col, Form, Row, Table } from 'react-bootstrap'
+import { BiLeftArrow, BiRightArrow } from 'react-icons/bi'
+import { FaSort } from 'react-icons/fa'
+import ReactPaginate from 'react-paginate'
+import axios from 'axios' // Import Axios
+import 'bootstrap/dist/css/bootstrap.min.css' // Import Bootstrap CSS
+import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai' // icons form react-icons
+import { IconContext } from 'react-icons' // for customizing icons
 
 const BasicTable = (props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  const columns = useMemo(() => props.COLUMNS);
-  const [tableData, setTableData] = useState([]);
-  const [totalPages, setTotalPages] = useState(1);
-  const [currentPage, setCurrentPage] = useState(1);
+  const columns = useMemo(() => props.COLUMNS)
+  const [tableData, setTableData] = useState([])
+  const [totalPages, setTotalPages] = useState(1)
+  const [total, setTotal] = useState(1)
+  const [currentPage, setCurrentPage] = useState(1)
 
   useEffect(() => {
     axios
       .get(
-        `https://notification-mysql-48f715723b35.herokuapp.com/v1/api/get-push-notification?page=${currentPage}&limit=10&sortField=NotificationId&sortOrder=desc`
+        `https://notification-mysql-48f715723b35.herokuapp.com/v1/api/get-push-notification?page=${currentPage}&limit=10&sortField=NotificationId&sortOrder=desc`,
       )
       .then((response) => {
-        setTableData(response?.data?.data || []);
-        setTotalPages(response?.data?.pagination?.totalPages || 1);
+        setTableData(response?.data?.data || [])
+        setTotalPages(response?.data?.pagination?.totalPages || 1)
+        setTotal(response?.data?.pagination?.totalCount || 1)
+
       })
       .catch((error) => {
-        console.log("AxiosError:", error);
-      });
-  }, [currentPage]);
+        console.log('AxiosError:', error)
+      })
+  }, [currentPage])
   useEffect(() => {
-    console.log("Total Pages:", totalPages);
-  }, [totalPages, tableData]);
+    console.log('Total Pages:', totalPages)
+  }, [totalPages, tableData])
 
   const {
     getTableProps,
@@ -56,12 +59,12 @@ const BasicTable = (props) => {
     },
     useGlobalFilter,
     useSortBy,
-    usePagination
-  );
+    usePagination,
+  )
 
   const handlePageClick = (selectedPage) => {
-    setCurrentPage(selectedPage.selected + 1);
-  };
+    setCurrentPage(selectedPage.selected + 1)
+  }
 
   return (
     <div>
@@ -70,7 +73,7 @@ const BasicTable = (props) => {
           <Col className="mb-4 mt-4" xxl={3} xl={3} lg={3} sm={3} md={3}>
             <Form.Control
               placeholder="Search here..."
-              value={state.globalFilter || ""}
+              value={state.globalFilter || ''}
               onChange={(e) => setGlobalFilter(e.target.value.trim())}
               className=""
             />
@@ -86,10 +89,10 @@ const BasicTable = (props) => {
             <Button
               className="fw-bold "
               style={{
-                backgroundColor: "#0d6efd",
-                outline: "none",
-                border: "none",
-                color: "white",
+                backgroundColor: '#0d6efd',
+                outline: 'none',
+                border: 'none',
+                color: 'white',
               }}
             >
               Search
@@ -113,17 +116,17 @@ const BasicTable = (props) => {
                           column.isSortedDesc ? (
                             <FaSort />
                           ) : (
-                            <>{column.render("Header")}</>
+                            <>{column.render('Header')}</>
                           )
                         ) : (
                           <>
-                            {column.render("Header")}
+                            {column.render('Header')}
                             <FaSort className="mx-4" />
                           </>
                         )}
                       </span>
                     ) : (
-                      <>{column.render("Header")}</>
+                      <>{column.render('Header')}</>
                     )}
                   </th>
                 ))}
@@ -134,16 +137,16 @@ const BasicTable = (props) => {
           <tbody {...getTableBodyProps()}>
             {rows.length > 0 ? (
               rows.map((row) => {
-                prepareRow(row);
+                prepareRow(row)
                 return (
                   <tr {...row.getRowProps()} key={row.id}>
                     {row.cells.map((cell) => (
                       <td {...cell.getCellProps()} key={cell.column.id}>
-                        {cell.render("Cell")}
+                        {cell.render('Cell')}
                       </td>
                     ))}
                   </tr>
-                );
+                )
               })
             ) : (
               <tr>
@@ -156,14 +159,11 @@ const BasicTable = (props) => {
         </Table>
         <Col
           className={`${
-            rows && rows.length > 0 ? "d-flex" : "d-none"
+            rows && rows.length > 0 ? 'd-flex' : 'd-none'
           } flex-row justify-content-center align-items-center`}
         >
           <span className="m-1 d-flex justify-content-start align-items-center">
-            Page
-            <strong className="m-2">
-              {state.pageIndex + 1} of {totalPages}
-            </strong>
+            Showing 1 to {(state.pageIndex + 1) * 10} of {total} entites
           </span>
 
           <Col className="d-none d-sm-none d-md-none d-xxl-flex d-xl-flex d-lg-flex justify-content-end align-items-center">
@@ -173,8 +173,8 @@ const BasicTable = (props) => {
               pageRangeDisplayed={5}
               pageCount={totalPages}
               renderOnZeroPageCount={null}
-              activeClassName={"active"}
-              pageClassName={"page-item"}
+              activeClassName={'active'}
+              pageClassName={'page-item'}
               pageLinkClassName="page-link"
               previousClassName="page-item"
               previousLinkClassName="page-link"
@@ -183,14 +183,14 @@ const BasicTable = (props) => {
               containerClassName="pagination"
               previousLabel={
                 <IconContext.Provider
-                  value={{ color: "#B8C1CC", size: "36px" }}
+                  value={{ color: '#B8C1CC', size: '36px' }}
                 >
                   <AiFillLeftCircle />
                 </IconContext.Provider>
               }
               nextLabel={
                 <IconContext.Provider
-                  value={{ color: "#B8C1CC", size: "36px" }}
+                  value={{ color: '#B8C1CC', size: '36px' }}
                 >
                   <AiFillRightCircle />
                 </IconContext.Provider>
@@ -207,7 +207,7 @@ const BasicTable = (props) => {
             </Button>
             <Button
               onClick={() => {
-                setCurrentPage(currentPage + 1);
+                setCurrentPage(currentPage + 1)
               }}
               disabled={currentPage === totalPages}
             >
@@ -217,7 +217,7 @@ const BasicTable = (props) => {
         </Col>
       </Row>
     </div>
-  );
-};
+  )
+}
 
-export default BasicTable;
+export default BasicTable

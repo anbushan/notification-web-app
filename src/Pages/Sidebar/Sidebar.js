@@ -1,13 +1,13 @@
-import React, { useState } from "react";
-import { Container, Offcanvas, Row, Col } from "react-bootstrap";
-import { sidebarItems } from "./SidebarData";
-import SidebarComponent from "../../Components/SidebarComponent";
-import { MdMenu } from "react-icons/md";
+import React, { useState } from 'react'
+import { Container, Offcanvas, Row, Col } from 'react-bootstrap'
+import { sidebarItems } from './SidebarData'
+import SidebarComponent from '../../Components/SidebarComponent'
+import { MdMenu } from 'react-icons/md'
 
 const Sidebar = () => {
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  const [show, setShow] = useState(false)
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
 
   return (
     <div className="rounded position-fixed">
@@ -16,11 +16,12 @@ const Sidebar = () => {
         fluid
         className="d-none d-lg-block d-xxl-block"
         style={{
-          backgroundColor: "white",
-          height: "100vh",
-          width: "100%",
-          overflowY: "auto",
-          marginLeft: "-30px",
+          backgroundColor: 'white',
+          height: '100vh',
+          width: '100%',
+          overflowY: 'auto',
+          marginLeft: '-30px',
+          overflowX: 'hidden',
         }}
       >
         <SidebarComponent sidebarItems={sidebarItems} />
@@ -31,7 +32,7 @@ const Sidebar = () => {
         <Col xs={12} className="text-end mt-2 mb-3">
           <MdMenu
             size={25}
-            style={{ cursor: "pointer", color: "black" }}
+            style={{ cursor: 'pointer', color: 'black' }}
             onClick={handleShow}
           />
         </Col>
@@ -43,7 +44,7 @@ const Sidebar = () => {
           style={{ width: 280 }}
         >
           <Offcanvas.Header closeButton className="justify-content-end" />
-          <Offcanvas.Body style={{ backgroundColor: "white" }}>
+          <Offcanvas.Body style={{ backgroundColor: 'white' }}>
             <SidebarComponent
               onClick={handleClose}
               sidebarItems={sidebarItems}
@@ -52,7 +53,7 @@ const Sidebar = () => {
         </Offcanvas>
       </Row>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

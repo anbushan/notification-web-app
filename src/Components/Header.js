@@ -1,6 +1,6 @@
-import React from "react";
-import { Button, Col, Row } from "react-bootstrap";
-import { FaPlus } from "react-icons/fa6";
+import React from 'react'
+import { Button, Col, Row } from 'react-bootstrap'
+import { FaPlus } from 'react-icons/fa6'
 
 const Header = (props) => {
   return (
@@ -30,7 +30,7 @@ const Header = (props) => {
         </Col>
       </Row>
     </div>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

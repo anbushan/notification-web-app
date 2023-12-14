@@ -1,10 +1,10 @@
-import "./App.css";
-import React from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { Container, Row, Col } from "react-bootstrap";
-import Notification from "./Pages/Notification";
-import Sidebar from "./Pages/Sidebar/Sidebar";
-import Products from "./Pages/Products";
+import './App.css'
+import React from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
+import { Container, Row, Col } from 'react-bootstrap'
+import Notification from './Pages/Notification'
+import Sidebar from './Pages/Sidebar/Sidebar'
+import Products from './Pages/Products'
 
 function App() {
   return (
@@ -13,10 +13,10 @@ function App() {
         <Container
           fluid
           style={{
-            backgroundColor: "#F5F6FA",
-            height: "100vh",
-            width: "100%",
-            overflowY: "auto",
+            backgroundColor: '#F5F6FA',
+            height: '100vh',
+            width: '100%',
+            overflowY: 'auto',
           }}
         >
           <Row>
@@ -24,7 +24,7 @@ function App() {
               <Sidebar />
             </Col>
 
-            <Col lg={9}  xxl={10} xl={10}>
+            <Col lg={9} xxl={10} xl={10}>
               <Routes>
                 {/* Private Routes */}
                 <Route path="/" element={<Products />} />
@@ -35,7 +35,7 @@ function App() {
         </Container>
       </Router>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

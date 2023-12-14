@@ -1,13 +1,12 @@
-import React from "react";
-import { Sidebar, Menu, MenuItem, SubMenu } from "react-pro-sidebar";
-import { Link } from "react-router-dom";
+import React from 'react'
+import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
+import { Link } from 'react-router-dom'
 import logoImg from '../Assets/144.png'
 
 const SidebarComponent = ({ sidebarItems, onClick }) => {
-
   const renderMenuItems = (items) => {
     return items.map((item) => {
-      const isActive = true;
+      const isActive = true
       if (item.children && item.children.length > 0) {
         return (
           <Menu
@@ -15,14 +14,14 @@ const SidebarComponent = ({ sidebarItems, onClick }) => {
               button: ({ level, active }) => {
                 if (level === 0 || level === 1) {
                   return {
-                    backgroundColor: active ? "blue" : undefined,
-                    color: active ? "white" : undefined,
+                    backgroundColor: active ? 'blue' : undefined,
+                    color: active ? 'white' : undefined,
 
-                    "&:hover": {
-                      backgroundColor: "blue",
-                      color: "#F5F6FA",
+                    '&:hover': {
+                      backgroundColor: 'blue',
+                      color: '#F5F6FA',
                     },
-                  };
+                  }
                 }
               },
             }}
@@ -31,10 +30,10 @@ const SidebarComponent = ({ sidebarItems, onClick }) => {
               className="textDecoration-none"
               active={isActive}
               rootStyles={{
-                backgroundColor: "#F5F6FA",
-                color: "black",
-                ":hover": {
-                  color: "white",
+                backgroundColor: '#F5F6FA',
+                color: 'black',
+                ':hover': {
+                  color: 'white',
                 },
               }}
               key={item.id}
@@ -45,7 +44,7 @@ const SidebarComponent = ({ sidebarItems, onClick }) => {
               {renderMenuItems(item.children)}
             </SubMenu>
           </Menu>
-        );
+        )
       } else {
         return (
           <Menu
@@ -53,14 +52,14 @@ const SidebarComponent = ({ sidebarItems, onClick }) => {
               button: ({ level, active }) => {
                 if (level === 0 || level === 1) {
                   return {
-                    backgroundColor: active ? "#5046e5" : undefined,
-                    color: active ? "white" : undefined,
+                    backgroundColor: active ? '#5046e5' : undefined,
+                    color: active ? 'white' : undefined,
 
-                    "&:hover": {
-                      backgroundColor: "#5046e5",
-                      color: "#F5F6FA",
+                    '&:hover': {
+                      backgroundColor: '#5046e5',
+                      color: '#F5F6FA',
                     },
-                  };
+                  }
                 }
               },
             }}
@@ -71,17 +70,17 @@ const SidebarComponent = ({ sidebarItems, onClick }) => {
                 className="textDecoration-none fs-15"
                 active={isActive}
                 rootStyles={{
-                  backgroundColor: "#F5F6FA",
-                  color: "black",
-                  borderRadius: "15px",
-                  ":hover": {
-                    color: "black",
-                    backgroundColor: "blue",
+                  backgroundColor: '#F5F6FA',
+                  color: 'black',
+                  borderRadius: '15px',
+                  ':hover': {
+                    color: 'black',
+                    backgroundColor: 'blue',
                   },
                 }}
                 hoverStyles={{
-                  color: "white",
-                  backgroundColor: "blue",
+                  color: 'white',
+                  backgroundColor: 'blue',
                 }}
                 key={item.id}
                 icon={item.icon}
@@ -90,41 +89,34 @@ const SidebarComponent = ({ sidebarItems, onClick }) => {
               </MenuItem>
             </Link>
           </Menu>
-        );
+        )
       }
-    });
-  };
+    })
+  }
 
   return (
-    <div className="mt-2" style={{ width: "100%" }}>
+    <div className="mt-2" style={{ width: '100%' }}>
       <div className="text-center">
         <a href="/">
-          <img
-            alt="logo"
-            src={logoImg}
-            width={'100px'}
-            height={'100px'}
-          />
+          <img alt="logo" src={logoImg} width={'100px'} height={'100px'} />
         </a>
       </div>
 
       <Sidebar
         rootStyles={{
-          backgroundColor: "#F5F6FA",
-          color: "black",
-          fontWeight: "bolder",
-          borderColor: "#fff",
-          borderRadius: "15px",
-          marginTop: "20px",
-          width: "100%", // Default width for large screens
+          backgroundColor: '#F5F6FA',
+          color: 'black',
+          fontWeight: 'bolder',
+          borderColor: '#fff',
+          borderRadius: '15px',
+          marginTop: '20px',
+          width: '100%', // Default width for large screens
         }}
       >
         <Menu iconShape="circle">{renderMenuItems(sidebarItems)}</Menu>
       </Sidebar>
-
-      
     </div>
-  );
-};
+  )
+}
 
-export default SidebarComponent;
+export default SidebarComponent
