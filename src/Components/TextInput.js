@@ -50,7 +50,7 @@ const TextInput = (props) => {
         xl={xl}
         sm={sm}
       />
-      {validation}
+       {validation}
     </Form.Group>
   )
 }

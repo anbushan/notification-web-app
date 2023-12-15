@@ -51,7 +51,7 @@ const Products = () => {
 
   const COLUMNS = [
     {
-      Header: ' ID',
+      Header: 'ID',
       accessor: 'NotificationId',
     },
 
@@ -130,7 +130,7 @@ const Products = () => {
           <Row className="mt-3 rounded">
             <Header
               ONCLICK={handleNavigateAddForm}
-              HEADING="Notifications"
+              HEADING="Notification"
               BUTTON_NAME="Add Notification"
             />
           </Row>
