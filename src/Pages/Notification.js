@@ -11,7 +11,9 @@ import { useDropzone } from 'react-dropzone'
 import { IoCloudUploadOutline } from 'react-icons/io5'
 import axios from 'axios' // Import Axios
 import { toast } from 'react-toastify'
-import EmojiPicker, { EmojiStyle } from 'emoji-picker-react'
+import { useTranslation } from 'react-i18next';
+
+
 
 const Notification = () => {
   const [title, setTitle] = useState('')
@@ -20,10 +22,10 @@ const Notification = () => {
   const [linkto, setLinkTo] = useState('')
   const [imagePreview, setImagePreview] = useState(null)
   const acceptedImageTypes = ['image/jpeg', 'image/png', 'image/gif']
-  const [isSaving, setIsSaving] = useState(false) // New state for loading
-  const [inputTitle, setInputTitle] = useState('')
-  const [inputMessage, setInputMessage] = useState('')
+  const [isSaving, setIsSaving] = useState(false) // New state for loading 
   const [file, setFile] = useState(null)
+  const { t } = useTranslation();
+
 
   const navigate = useNavigate()
   const handleCancel = () => {
@@ -51,23 +53,6 @@ const Notification = () => {
   }
 
 
-  function onClickMessage(emojiData, event) {
-    setInputMessage(
-      (inputMessage) =>
-      inputMessage + (emojiData.isCustom ? emojiData.unified : emojiData.emoji),
-    )
-  }
-
-
-
-  function onClick(emojiData, event) {
-    setInputTitle(
-      (inputTitle) =>
-      inputTitle + (emojiData.isCustom ? emojiData.unified : emojiData.emoji),
-    )
-  }
-
-
   const handleAddData = (values) => {
     setIsSaving(true)
     const headers = {
@@ -76,17 +61,17 @@ const Notification = () => {
     }
 
     const data = {
-      title: inputTitle,
-      message: inputMessage,
+      title: title,
+      message: message,
       image: file,
       link: linkto,
      
     }
     const formData = new FormData();
 
-    formData.append("title", inputTitle);
+    formData.append("title", title);
 
-    formData.append("message", inputMessage);
+    formData.append("message", message);
 
     formData.append("file", file);
 
@@ -217,7 +202,7 @@ const Notification = () => {
                   size={25}
                   className="mt-1 m-1 pointer"
                 />
-                <h5 className="fw-bold mt-1">&nbsp;Add Notification</h5>
+                <h5 className="fw-bold mt-1">&nbsp; {t("Add Notification" )}</h5>
               </Col>
               <Col className="d-sm-none d-none d-md-none d-lg-flex d-xxl-flex d-xl-flex flex-row justify-content-end align-items-center">
                 <BasicButton
@@ -254,10 +239,9 @@ const Notification = () => {
                     name="title"
                     label="Title"
                     onChange={(e) => {
-                      setInputTitle(e.target.value)
+                      setTitle(e.target.value)
                       handleChange(e)
                     }}
-                    value={inputTitle}
                     onBlur={handleBlur}
                     placeholder="Enter title here.. "
                     className={`input ${touched.title && errors.title ? 'is-invalid' : ''
@@ -270,24 +254,19 @@ const Notification = () => {
                       )
                     }
                   />
-                  <EmojiPicker
-                    onEmojiClick={onClick}
-                    autoFocusSearch={false}
-                    emojiStyle={EmojiStyle.NATIVE}
-                  />
+                 
                   <Col className="mt-2" />
                   <TextArea
                     name="message"
                     label="Message"
                     onChange={(e) => {
-                      setInputMessage(e.target.value)
+                      setMessage(e.target.value)
                       handleChange(e)
                     }}
                     onBlur={handleBlur}
                     placeholder="Enter message here.. "
                     className={`  input ${touched.message && errors.message ? 'is-invalid' : ''
                       }`}
-                      value={inputMessage}
                     validation={
                       touched.message && errors.message ? (
                         <p className="text-danger">{errors.message}</p>
@@ -296,13 +275,6 @@ const Notification = () => {
                       )
                     }
                   />
-                  <EmojiPicker
-                    onEmojiClick={onClickMessage}
-                    autoFocusSearch={false}
-                    emojiStyle={EmojiStyle.NATIVE}
-                  />
-
-                
 
                   <Col className="mt-2" />
                   <TextInput
@@ -325,16 +297,16 @@ const Notification = () => {
                     }
                   />
                   <p className="mt-2">
-                    Image Upload
+                    {t("Image Upload" )}
                     <span className={`text-danger`}>*</span>
                   </p>
-                  <p className=" text-center ">Image Size: 150x150 pixels </p>
+                  <p className=" text-center "> {t("Image Size: 150x150 pixels" )}</p>
                   <Col>
                     <MyDropzone />
                   </Col>
                   <p className="text-primary text-center m-2">
                     {' '}
-                    Only .jpeg / .png / .jpg files are accepted
+                     {t("Only .jpeg / .png / .jpg files are accepted" )}
                   </p>
                   <p>
                     {touched.image && errors.image && (
@@ -353,7 +325,7 @@ const Notification = () => {
                           className="text-success mt-2 pointer"
                           onClick={() => removeImage({ setFieldValue })}
                         >
-                          Remove Image
+                           {t(" Remove Image" )}
                         </p>
                       </>
                     )}

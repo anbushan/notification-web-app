@@ -1,6 +1,10 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next';
+
 const TextArea = (props) => {
+  const { t } = useTranslation();
+
   const {
     label,
     rows,
@@ -22,7 +26,7 @@ const TextArea = (props) => {
   return (
     <Form.Group controlId="formBasicTextArea">
       <Form.Label htmlFor={htmlFor}>
-        {label}
+        {t(`${label}` )}
         <span className={`text-danger ${star === 'none' ? `d-${star}` : ''}`}>
           *
         </span>{' '}
@@ -33,7 +37,7 @@ const TextArea = (props) => {
         rows={rows}
         value={value}
         type={type}
-        placeholder={placeholder}
+        placeholder={t(`${placeholder}` )}
         onChange={onChange}
         className={className}
         lg={lg}

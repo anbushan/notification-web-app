@@ -13,6 +13,8 @@ import axios from 'axios' // Import Axios
 import 'bootstrap/dist/css/bootstrap.min.css' // Import Bootstrap CSS
 import { AiFillLeftCircle, AiFillRightCircle } from 'react-icons/ai' // icons form react-icons
 import { IconContext } from 'react-icons' // for customizing icons
+import { useTranslation } from 'react-i18next';
+
 
 const BasicTable = (props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -21,6 +23,7 @@ const BasicTable = (props) => {
   const [totalPages, setTotalPages] = useState(1)
   const [total, setTotal] = useState(1)
   const [currentPage, setCurrentPage] = useState(1)
+  const { t } = useTranslation();
 
   useEffect(() => {
     axios
@@ -94,7 +97,7 @@ const BasicTable = (props) => {
                 color: 'white',
               }}
             >
-              Search
+              {t(`Search`)}
             </Button>
           </Col>
         </Form>
@@ -115,17 +118,17 @@ const BasicTable = (props) => {
                           column.isSortedDesc ? (
                             <FaSort />
                           ) : (
-                            <>{column.render('Header')}</>
+                            <>{t(`${column.render('Header')}` )}</>
                           )
                         ) : (
                           <>
-                            {column.render('Header')}
+                            {t(`${column.render('Header')}` )}
                             <FaSort className="mx-4" />
                           </>
                         )}
                       </span>
                     ) : (
-                      <>{column.render('Header')}</>
+                      <>{t(`${column.render('Header')}` )}</>
                     )}
                   </th>
                 ))}
@@ -150,7 +153,7 @@ const BasicTable = (props) => {
             ) : (
               <tr>
                 <td colSpan={columns.length} className="text-center text-dark">
-                  No Data Found...
+                { t(` No Data Found...`)}
                 </td>
               </tr>
             )}
@@ -162,7 +165,7 @@ const BasicTable = (props) => {
           } flex-row justify-content-center align-items-center`}
         >
           <span className="m-1 d-flex justify-content-start align-items-center">
-            Showing 1 to {(state.pageIndex + 1) * 10} of {total} entites
+            Showing 1 to {(state.pageIndex + 1) * 10} of {total} entites 
           </span>
 
           <Col className="d-none d-sm-none d-md-none d-xxl-flex d-xl-flex d-lg-flex justify-content-end align-items-center">

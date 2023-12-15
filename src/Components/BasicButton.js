@@ -1,6 +1,10 @@
 import React from 'react'
 import { Button } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next';
+
 const BasicButton = (props) => {
+  const { t } = useTranslation();
+
   const { variant, onClick, label, size, color, icon, className } = props
   const buttonStyle = {
     backgroundColor: color,
@@ -15,7 +19,7 @@ const BasicButton = (props) => {
         size={size}
         onClick={onClick}
       >
-        {icon} {label}
+        {icon} {t(`${label}` )}
       </Button>
     </div>
   )
