@@ -1,0 +1,32 @@
+
+{
+    "Notification": "Notification",
+    "Title": "Title",
+    "Link": "Link",
+    "Message": "Message",
+    "Image": "Image",
+    "Add Notification": "Add Notification",
+    "Yes": "Yes",
+    "No": "No",
+    "Confirm to Delete this": "Confirm to Delete this",
+    "Image Upload": "Image Upload",
+    "Image Size: 150x150 pixels": "Image Size: 150x150 pixels",
+    "Only .jpeg / .png / .jpg files are accepted": "Only .jpeg / .png / .jpg files are accepted",
+    "Remove Image": "Remove Image",
+    "Action": "Action",
+    "ID": "ID",
+    "Search": "Search",
+    "Search here": "Search here",
+    "Enter link here":"Enter link here",
+    "Enter title here":"Enter title here",
+    "Enter message here":"Enter message here",
+    "No Data Found":"No Data Found",
+    "Title must be required":"Title must be required",
+    "Please enter Message":"Please enter Message",
+    "URL is not valid":"URL is not valid",
+    "Must be required your Link":"Must be required your Link",
+    "Please provide an Image":"Please provide an Image",
+    "Send": "Send",
+    "Cancel": "Cancel"
+  }
+  
