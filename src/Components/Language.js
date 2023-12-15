@@ -1,17 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Dropdown } from 'react-bootstrap';
-import {useLanguage} from '../context/LanguageContext';
+import { useLanguage } from '../context/LanguageContext';
 import { EventRegister } from 'react-native-event-listeners';
 
 const LanguageDropdown = () => {
-  const { changeLanguage , language} = useLanguage();
+  const { changeLanguage, language } = useLanguage();
   const [selectedLanguage, setSelectedLanguage] = useState('en');
 
+  // Use useEffect to get the selected language from local storage when the component mounts
+  useEffect(() => {
+    const storedLanguage = localStorage.getItem('selectedLanguage');
+    if (storedLanguage) {
+      setSelectedLanguage(storedLanguage);
+      changeLanguage(storedLanguage);
+    }
+  }, [changeLanguage]);
 
   const handleLanguageSelect = (code, language) => {
     setSelectedLanguage(code);
+    // Save the selected language code to local storage
+    localStorage.setItem('selectedLanguage', code);
     // You can add additional logic here when a language is selected
-    EventRegister.emit("changeLanguage", code);
+    EventRegister.emit('changeLanguage', code);
     changeLanguage(code);
   };
 
@@ -30,14 +40,12 @@ const LanguageDropdown = () => {
         {languageOptions.map((language, index) => (
           <Dropdown.Item
             key={index}
-            onClick={() => handleLanguageSelect(language.code,language.name)}
+            onClick={() => handleLanguageSelect(language.code, language.name)}
           >
             {language.name}
           </Dropdown.Item>
         ))}
       </Dropdown.Menu>
-
-
     </Dropdown>
   );
 };

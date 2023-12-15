@@ -80,7 +80,7 @@ const Notification = () => {
 
     axios
       .post(
-        'https://notification-mysql-48f715723b35.herokuapp.com/v1/api/send-push-notification',
+        'https://notification-mysql-48f715723b35.herokuapp.com/v1/api/send-push-notification-users',
         data,
         { headers: headers },
       )
@@ -169,7 +169,7 @@ const Notification = () => {
               style={{ cursor: 'pointer', color: 'blue' }}
             />
             <p className="text-secondary">
-              Drag 'n' drop, or click to select files
+              {t("Drag 'n' drop, or click to select files")}
             </p>
           </div>
         )}
@@ -243,7 +243,7 @@ const Notification = () => {
                       handleChange(e)
                     }}
                     onBlur={handleBlur}
-                    placeholder="Enter title here.. "
+                    placeholder="Enter title here.."
                     className={`input ${touched.title && errors.title ? 'is-invalid' : ''
                       }`}
                     validation={
@@ -264,7 +264,7 @@ const Notification = () => {
                       handleChange(e)
                     }}
                     onBlur={handleBlur}
-                    placeholder="Enter message here.. "
+                    placeholder="Enter message here.."
                     className={`  input ${touched.message && errors.message ? 'is-invalid' : ''
                       }`}
                     validation={
@@ -285,7 +285,7 @@ const Notification = () => {
                       handleChange(e)
                     }}
                     onBlur={handleBlur}
-                    placeholder="Enter link here.. "
+                    placeholder={t("Enter link here..")}
                     className={` input ${touched.linkto && errors.linkto ? 'is-invalid' : ''
                       }`}
                     validation={

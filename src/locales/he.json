@@ -27,6 +27,12 @@
     "Must be required your Link":"חייב להידרש עבור הקישור שלך",
     "Please provide an Image":"אנא ספק תמונה",
     "Send": "לִשְׁלוֹחַ",
-    "Cancel": "לְבַטֵל"
+    "Cancel": "לְבַטֵל",
+    "Notifications": "התראות",
+    "Drag 'n' drop, or click to select files" : "גרור ושחרר, או לחץ כדי לבחור קבצים",
+    "Showing" : "מראה",
+    "to" : "ל",
+    "of" : "שֶׁל",
+    "entites" : "ישויות"
   }
   

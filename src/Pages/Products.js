@@ -130,7 +130,7 @@ const Products = () => {
           <Row className="mt-3 rounded">
             <Header
               ONCLICK={handleNavigateAddForm}
-              HEADING="Notifications"
+              HEADING={t("Notifications")}
               BUTTON_NAME="Add Notification"
             />
           </Row>
