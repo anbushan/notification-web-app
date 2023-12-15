@@ -27,6 +27,12 @@
     "Must be required your Link":"Must be required your Link",
     "Please provide an Image":"Please provide an Image",
     "Send": "Send",
-    "Cancel": "Cancel"
+    "Cancel": "Cancel",
+    "Notifications" : "Notifications",
+    "Drag 'n' drop, or click to select files" : "Drag 'n' drop, or click to select files",
+    "Showing" : "Showing",
+    "to" : "to",
+    "of" : "of",
+    "entites" : "entites"
   }
   

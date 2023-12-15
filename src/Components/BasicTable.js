@@ -74,7 +74,7 @@ const BasicTable = (props) => {
         <Form className="d-flex flex-lg-row flex-column flex-xxl-row flex-xl-row flex-sm-column flex-md-row">
           <Col className="mb-4 mt-4" xxl={3} xl={3} lg={3} sm={3} md={3}>
             <Form.Control
-              placeholder={t(`Search here...`)}
+              placeholder= {t("Search here...")}
               value={state.globalFilter || ''}
               onChange={(e) => setGlobalFilter(e.target.value.trim())}
               className=""
@@ -165,7 +165,7 @@ const BasicTable = (props) => {
           } flex-row justify-content-center align-items-center`}
         >
           <span className="m-1 d-flex justify-content-start align-items-center">
-           Showing 1 to {(state.pageIndex + 1) * 10} of {total} entites
+            {t("Showing")} 1 {t("to")} {(state.pageIndex + 1) * 10} {t("of")} {total} {t("entites")} 
           </span>
 
           <Col className="d-none d-sm-none d-md-none d-xxl-flex d-xl-flex d-lg-flex justify-content-end align-items-center">
