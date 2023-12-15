@@ -248,7 +248,7 @@ const Notification = () => {
                       }`}
                     validation={
                       touched.title && errors.title ? (
-                        <p className="text-danger">{errors.title}</p>
+                        <p className="text-danger">{t(`${errors.title}` )}</p>
                       ) : (
                         ''
                       )
@@ -269,7 +269,7 @@ const Notification = () => {
                       }`}
                     validation={
                       touched.message && errors.message ? (
-                        <p className="text-danger">{errors.message}</p>
+                        <p className="text-danger">{t(`${errors.message}` )}</p>
                       ) : (
                         ''
                       )
@@ -279,7 +279,7 @@ const Notification = () => {
                   <Col className="mt-2" />
                   <TextInput
                     name="linkto"
-                    label="Link "
+                    label="Link"
                     onChange={(e) => {
                       setLinkTo(e.target.value)
                       handleChange(e)
@@ -290,11 +290,7 @@ const Notification = () => {
                       }`}
                     validation={
                       touched.linkto && errors.linkto ? (
-                        <p className="text-danger">{errors.linkto}</p>
-                      ) : (
-                        ''
-                      )
-                    }
+                        <p className="text-danger">{t(`${errors.linkto}` )}</p>) : ('')}
                   />
                   <p className="mt-2">
                     {t("Image Upload" )}
@@ -309,9 +305,8 @@ const Notification = () => {
                      {t("Only .jpeg / .png / .jpg files are accepted" )}
                   </p>
                   <p>
-                    {touched.image && errors.image && (
-                      <p className="text-danger">{errors.image}</p>
-                    )}
+                   {touched.image && errors.image && (
+                      <p className="text-danger"> {t(`${errors.image}` )}</p>)}
                   </p>
                   <Col>
                     {imagePreview && (
@@ -325,7 +320,7 @@ const Notification = () => {
                           className="text-success mt-2 pointer"
                           onClick={() => removeImage({ setFieldValue })}
                         >
-                           {t(" Remove Image" )}
+                           {t("Remove Image" )}
                         </p>
                       </>
                     )}

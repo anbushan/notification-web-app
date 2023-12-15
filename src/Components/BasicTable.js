@@ -153,7 +153,7 @@ const BasicTable = (props) => {
             ) : (
               <tr>
                 <td colSpan={columns.length} className="text-center text-dark">
-                { t(` No Data Found...`)}
+                { t(`No Data Found`)}
                 </td>
               </tr>
             )}

@@ -51,7 +51,7 @@ const Products = () => {
 
   const COLUMNS = [
     {
-      Header: ' ID',
+      Header: 'ID',
       accessor: 'NotificationId',
     },
 
