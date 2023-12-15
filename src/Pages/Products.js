@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Container, Row } from 'react-bootstrap'
+import { Button, Col, Container, Row } from 'react-bootstrap'
 import BasicTable from '../Components/BasicTable'
 import { useNavigate } from 'react-router-dom'
 import { MdDelete } from 'react-icons/md'
@@ -8,10 +8,14 @@ import DeleteModel from '../Components/DeleteModal'
 import axios from 'axios'
 import moment from 'moment'
 import defaultImage from '../Assets/defaultImage.png'
+import LanguageDropdown from '../Components/Language'
+import { useTranslation } from 'react-i18next';
+
 
 const Products = () => {
   const [deleteShow, setDeleteShow] = useState(false)
   const [deleteId, setDeleteId] = useState()
+  const { t } = useTranslation();
 
   const navigate = useNavigate()
   const handleNavigateAddForm = () => navigate('/notify-add')
@@ -107,7 +111,7 @@ const Products = () => {
               // className="m-1"
               onClick={() => deleteHandleShow(rowIdx)}
             >
-              <MdDelete />
+              <MdDelete size={20}/>
             </Button>
           </div>
         )
@@ -118,9 +122,12 @@ const Products = () => {
   return (
     <div>
       <>
-        <Container fluid className="m-0 p-0">
+        <Container fluid className="m-0 p-0">  
+            <Col className="d-flex m-2 align-items-end justify-content-end ">
+              <LanguageDropdown />
+            </Col>
           {/* Updated styles for margin and padding */}
-          <Row className="mt-5 rounded">
+          <Row className="mt-3 rounded">
             <Header
               ONCLICK={handleNavigateAddForm}
               HEADING="Notifications"
@@ -135,7 +142,7 @@ const Products = () => {
               margin: 'auto',
             }}
           >
-            <BasicTable COLUMNS={COLUMNS} />
+            <BasicTable COLUMNS= {COLUMNS}/>
           </Row>
         </Container>
         <DeleteModel

@@ -1,6 +1,10 @@
 import React from 'react'
 import { Form } from 'react-bootstrap'
+import { useTranslation } from 'react-i18next';
+
 const TextInput = (props) => {
+  const { t } = useTranslation();
+
   const {
     label,
     name,
@@ -25,7 +29,7 @@ const TextInput = (props) => {
   return (
     <Form.Group>
       <Form.Label htmlFor={htmlFor} className={lableClassName}>
-        {label}
+        {t(`${label}` )}
         <span className={`text-danger ${star === 'none' ? `d-${star}` : ''}`}>
           *
         </span>
@@ -34,7 +38,7 @@ const TextInput = (props) => {
         name={name}
         id={id}
         type={type}
-        placeholder={placeholder}
+        placeholder={t(`${placeholder}` )}
         value={value}
         onChange={onChange}
         onBlur={onBlur}

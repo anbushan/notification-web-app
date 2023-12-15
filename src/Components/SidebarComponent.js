@@ -2,8 +2,12 @@ import React from 'react'
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar'
 import { Link } from 'react-router-dom'
 import logoImg from '../Assets/144.png'
+import { useTranslation } from 'react-i18next';
+
 
 const SidebarComponent = ({ sidebarItems, onClick }) => {
+  const { t } = useTranslation();
+
   const renderMenuItems = (items) => {
     return items.map((item) => {
       const isActive = true
@@ -85,7 +89,7 @@ const SidebarComponent = ({ sidebarItems, onClick }) => {
                 key={item.id}
                 icon={item.icon}
               >
-                {item.label}
+                {t(`${item.label}` )}
               </MenuItem>
             </Link>
           </Menu>
@@ -113,7 +117,7 @@ const SidebarComponent = ({ sidebarItems, onClick }) => {
           width: '100%', // Default width for large screens
         }}
       >
-        <Menu iconShape="circle">{renderMenuItems(sidebarItems)}</Menu>
+        <Menu iconShape="circle"> {renderMenuItems(sidebarItems)}</Menu>
       </Sidebar>
     </div>
   )
