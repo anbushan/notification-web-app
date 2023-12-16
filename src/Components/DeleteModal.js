@@ -12,7 +12,7 @@ const DeleteModel = (props) => {
         <Modal.Header closeButton>
           <Modal.Title> {t(`${props.DELETETITLE}` )}</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Confirm to Delete this {t(`${props.DESCRIPTION}` )} ..?</Modal.Body>
+        <Modal.Body> {t(`Confirm to Delete this`)} {t(`${props.DESCRIPTION}` )} ..?</Modal.Body>
         <Modal.Footer>
           <Button
             variant="danger"
