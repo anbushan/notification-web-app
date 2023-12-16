@@ -5,7 +5,7 @@ import { EventRegister } from 'react-native-event-listeners';
 
 const LanguageDropdown = () => {
   const { changeLanguage, language } = useLanguage();
-  const [selectedLanguage, setSelectedLanguage] = useState('en');
+  const [selectedLanguage, setSelectedLanguage] = useState('En');
 
   // Use useEffect to get the selected language from local storage when the component mounts
   useEffect(() => {
@@ -26,8 +26,8 @@ const LanguageDropdown = () => {
   };
 
   const languageOptions = [
-    { code: 'en', name: 'En' },
-    { code: 'he', name: 'He' }
+    { code: 'En', name: 'En' },
+    { code: 'He', name: 'He' }
     // Add more language options as needed
   ];
 
