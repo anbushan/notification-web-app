@@ -20,7 +20,7 @@ const Header = (props) => {
             size="sm"
             onClick={props.ONCLICK}
           >
-            <FaPlus className="m-2" />
+            <FaPlus size={20} className="m-2" />
           </Button>
           <Button
             variant="primary"
@@ -28,7 +28,7 @@ const Header = (props) => {
             size="sm"
             onClick={props.ONCLICK}
           >
-            <FaPlus size={18} className="m-2 fw-bold" />
+            <FaPlus size={20} className="m-2 fw-bold" />
             {t(`${props.BUTTON_NAME}` )}
           </Button>
         </Col>
