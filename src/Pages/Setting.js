@@ -5,28 +5,32 @@ import { Col, Row } from "react-bootstrap";
 import BasicButton from "../Components/BasicButton";
 import TextInput from "../Components/TextInput";
 import LanguageDropdown from "../Components/Language";
-import { useTranslation } from "react-i18next";
+import { useTranslation } from 'react-i18next';
+
 
 const Settings = () => {
-  const [contact, setContact] = useState("");
-  const [sharelink, setShareLink] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
-  const { t } = useTranslation();
+    const [contact, setContact] = useState('')
+    const [sharelink, setShareLink] = useState('')
+    const [isEditing, setIsEditing] = useState(false) 
+    const { t } = useTranslation();
 
-  const initialValues = {
-    contact: "",
-    sharelink: "",
-  };
 
-  const handleAddData = () => {
-    console.log("hello");
-  };
+
+    const initialValues = {
+        contact: '',
+        sharelink: '',
+      }
+      
+const handleAddData = () =>{
+console.log("hello")
+}
 
   return (
     <div className="container-fluid">
-      <Col className="d-flex m-2 align-items-end justify-content-end ">
-        <LanguageDropdown />
-      </Col>
+
+         <Col className="d-flex m-2 align-items-end justify-content-end ">
+              <LanguageDropdown />
+            </Col>
       <Formik
         initialValues={initialValues}
         validationSchema={SettingSchema}
@@ -45,20 +49,18 @@ const Settings = () => {
           <>
             <Row className="d-flex flex-row justify-content-between align-items-center mt-3">
               <Col className="d-flex justify-content-start align-items-center">
-                <h5 className="fw-bold m-3">
-                  &nbsp;{t("Add Contact & Share Link")}{" "}
-                </h5>
+                <h5 className="fw-bold m-3">&nbsp;{t("Add Contact & Share Link" )} </h5>
               </Col>
               <Col className="d-sm-none d-none d-md-none d-lg-flex d-xxl-flex d-xl-flex flex-row justify-content-end align-items-center">
                 <BasicButton
                   className="m-1 mb-4"
                   type="submit"
-                  label={isEditing ? "update" : "Create"}
+                  label= {isEditing ? 'update' : 'Create'}
                   onClick={
-                    contact === "" ||
-                    sharelink === "" ||
-                    (touched.contact && errors.contact) ||
-                    (touched.sharelink && errors.sharelink)
+                    contact === '' ||
+                      sharelink === '' ||
+                      (touched.contact && errors.contact) ||
+                      (touched.sharelink && errors.sharelink) 
                       ? handleSubmit
                       : () => handleAddData({ values, setFieldValue })
                   }
@@ -74,45 +76,37 @@ const Settings = () => {
                     name="contact"
                     label="Contact"
                     onChange={(e) => {
-                      setContact(e.target.value);
-                      handleChange(e);
+                      setContact(e.target.value)
+                      handleChange(e)
                     }}
                     onBlur={handleBlur}
                     placeholder="Enter contact here.."
-                    className={`input ${
-                      touched.contact && errors.contact ? "is-invalid" : ""
-                    }`}
+                    className={`input ${touched.contact && errors.contact ? 'is-invalid' : ''
+                      }`}
                     validation={
                       touched.contact && errors.contact ? (
-                        <p className="text-danger">{t(`${errors.contact}`)}</p>
+                        <p className="text-danger">{t(`${errors.contact}` )}</p>
                       ) : (
-                        ""
+                        ''
                       )
                     }
                   />
-
+                 
                   <Col className="mt-4" />
                   <TextInput
                     name="sharelink"
                     label="Share Link"
                     onChange={(e) => {
-                      setShareLink(e.target.value);
-                      handleChange(e);
+                      setShareLink(e.target.value)
+                      handleChange(e)
                     }}
                     onBlur={handleBlur}
                     placeholder="Enter Share link here.."
-                    className={` input ${
-                      touched.sharelink && errors.sharelink ? "is-invalid" : ""
-                    }`}
+                    className={` input ${touched.sharelink && errors.sharelink ? 'is-invalid' : ''
+                      }`}
                     validation={
                       touched.sharelink && errors.sharelink ? (
-                        <p className="text-danger">
-                          {t(`${errors.sharelink}`)}
-                        </p>
-                      ) : (
-                        ""
-                      )
-                    }
+                        <p className="text-danger">{t(`${errors.sharelink}` )}</p>) : ('')}
                   />
                 </Col>
               </Col>
@@ -123,12 +117,12 @@ const Settings = () => {
                 <BasicButton
                   className="m-1"
                   type="submit"
-                  label={isEditing ? "update" : "Create"}
+                  label={isEditing ? 'update' : 'Create'}
                   onClick={
-                    contact === "" ||
-                    sharelink === "" ||
-                    (touched.contact && errors.contact) ||
-                    (touched.sharelink && errors.sharelink)
+                    contact === '' ||
+                    sharelink === '' ||
+                      (touched.contact && errors.contact) ||
+                      (touched.sharelink && errors.sharelink) 
                       ? handleSubmit
                       : () => handleAddData({ values, setFieldValue })
                   }
@@ -139,7 +133,8 @@ const Settings = () => {
         )}
       </Formik>
     </div>
-  );
+
+     )
 };
 
 export default Settings;
