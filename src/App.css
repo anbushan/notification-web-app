@@ -11,6 +11,16 @@
 .Pointer{
   cursor: pointer;
 }
+.fs-130{
+  font-size: 130px;
+}
+.txt-b{
+  color: blue;
+
+}
+.fs-6{
+  font-size: 40px;
+}
 
 @media (max-width: 767.98px) {
   master .offcanvas-responsive {
