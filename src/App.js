@@ -5,7 +5,7 @@ import { Container, Row, Col } from "react-bootstrap";
 import Notification from "./Pages/Notification";
 import Sidebar from "./Pages/Sidebar/Sidebar";
 import Products from "./Pages/Products";
-import LanguageDropdown from "./Components/Language";
+import Settings from "./Pages/Setting";
 
 function App() {
   return (
@@ -31,6 +31,9 @@ function App() {
                 {/* Private Routes */}
                 <Route path="/" element={<Products />} />
                 <Route path="/notify-add" element={<Notification />} />
+                
+                <Route path="/settings" element={<Settings />} />
+
               </Routes>
             </Col>
             

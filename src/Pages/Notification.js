@@ -178,7 +178,7 @@ const Notification = () => {
   }
 
   return (
-    <div className="mr-10 container-fluid">
+    <div className="container-fluid">
       <Formik
         initialValues={initialValues}
         validationSchema={notifySchema}
@@ -200,7 +200,7 @@ const Notification = () => {
                 <AiOutlineArrowLeft
                   onClick={handleCancel}
                   size={25}
-                  className="mt-1 m-1 pointer"
+                  className="mt-1 m-1 Pointer"
                 />
                 <h5 className="fw-bold mt-1">&nbsp; {t("Add Notification" )}</h5>
               </Col>
