@@ -103,7 +103,7 @@ const Products = () => {
       accessor: 'action',
       disableSortBy: true,
       Cell: (props) => {
-        const rowIdx = props.row.original.refer_notification_id
+        const rowIdx = props.row.original.NotificationId
         return (
           <div className="d-flex align-items-center justify-content-center flex-row">
             <Button

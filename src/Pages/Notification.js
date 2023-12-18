@@ -80,7 +80,7 @@ const Notification = () => {
 
     axios
       .post(
-        'https://notification-mysql-48f715723b35.herokuapp.com/v1/api/send-push-notification-users',
+        'https://notification-mysql-48f715723b35.herokuapp.com/v1/api/send-push-notification-users-test',
         data,
         { headers: headers },
       )
