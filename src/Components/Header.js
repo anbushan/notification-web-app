@@ -20,7 +20,7 @@ const Header = (props) => {
             size="sm"
             onClick={props.ONCLICK}
           >
-            <FaPlus size={20} className="m-2" />
+            <FaPlus size={19} className="m-1 fw-bold" />
           </Button>
           <Button
             variant="primary"
