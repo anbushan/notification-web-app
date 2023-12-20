@@ -1,6 +1,7 @@
-
 import React from 'react'
 import { Col, Container, Row } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import BasicButton from '../Components/BasicButton'
 
 
 const PageError404 = () => {
@@ -14,6 +15,12 @@ const PageError404 = () => {
           <Col>
           <p className='fw-bold fs-6 '>THE PAGE YOU REQUESTED COULD NOT FOUND</p>
           </Col>
+          <Col className='d-flex flex-column  justify-content-center align-items-center text-center'>
+          <Link className='textDecoration-none' to={"/"}>
+          <BasicButton label={"GO BACK"}className={"d-flex align-items-center  border-none outline-none text-bold fs-6"}/>
+          </Link>
+          </Col>
+
         </Row>
       </Container>
     </div>
