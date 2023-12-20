@@ -6,6 +6,7 @@ import Notification from "./Pages/Notification";
 import Sidebar from "./Pages/Sidebar/Sidebar";
 import Products from "./Pages/Products";
 import Settings from "./Pages/Setting";
+import PageError404 from './Pages/404';
 
 function App() {
   return (
@@ -19,21 +20,35 @@ function App() {
             width: "100%",
             overflowY: "auto",
           }}
-        >
-          <Row>
-            <Col lg={3} xxl={2} xl={2} xs={12}>
-              <Sidebar />
-            </Col>
-            
+        >          
 
+          <Row>
+            {/* Sidebar is only rendered when the route matches specific paths */}
+            <Col lg={3} xxl={2} xl={2} xs={12}>
+              <Routes>
+                <Route
+                  path="/"
+                  element={<Sidebar />} 
+                />
+                <Route
+                  path="/notify-add"
+                  element={<Sidebar />} 
+                />
+                <Route
+                  path="/settings"
+                  element={<Sidebar />} 
+                />
+              </Routes>
+            </Col>
+
+            {/* Main content area */}
             <Col lg={9} xxl={10} xl={10}>
               <Routes>
                 {/* Private Routes */}
                 <Route path="/" element={<Products />} />
                 <Route path="/notify-add" element={<Notification />} />
-                
                 <Route path="/settings" element={<Settings />} />
-
+                <Route path="*" element={<PageError404 />} />
               </Routes>
             </Col>
             
