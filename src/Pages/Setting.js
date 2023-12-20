@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { SettingSchema } from "./SettingSchema";
 import { Col, Row } from "react-bootstrap";
 import TextInput from "../Components/TextInput";
+import BasicButton from "../Components/BasicButton";
 import LanguageDropdown from "../Components/Language";
 import { useTranslation } from "react-i18next";
 import axios from "axios";
@@ -41,12 +42,63 @@ const Settings = () => {
       });
   }, []);
 
+  const handleAddData = () => {
+    axios
+      .post(
+        "https://notification-mysql-48f715723b35.herokuapp.com/v1/api/settings/add-contact",
+        {
+          contact: contact,
+          share: {
+            android: shareLinkAd,
+            ios: shareLinkIos,
+          },
+          rating: {
+            android: rateUsAd,
+            ios: rateUsIos,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+  const handleUpdateData = () => {
+    axios
+      .patch(
+        "https://notification-mysql-48f715723b35.herokuapp.com/v1/api/settings/update-contact/1",
+        {
+          contact: contact,
+          share: {
+            android: shareLinkAd,
+            ios: shareLinkIos,
+          },
+          rating: {
+            android: rateUsAd,
+            ios: rateUsIos,
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
   return (
     <div className="container-fluid">
       <Col className="d-flex m-2 align-items-end justify-content-end ">
         <LanguageDropdown />
       </Col>
-      <Formik initialValues={initialValues} validationSchema={SettingSchema}>
+      <Formik
+        initialValues={initialValues}
+        validationSchema={SettingSchema}
+        isSubmitting={handleAddData}
+      >
         {({
           values,
           errors,
@@ -58,11 +110,46 @@ const Settings = () => {
           setFieldValue,
         }) => (
           <>
-            <Row className="d-flex flex-row justify-content-between align-items-center mt-5">
+            <Row className="d-flex flex-row justify-content-between align-items-center mt-3">
               <Col className="d-flex justify-content-start align-items-center ">
                 <h5 className="fw-bold m-2">
                   &nbsp;{t("Add Contact & Share Link")}{" "}
                 </h5>
+              </Col>
+              <Col className="d-sm-none d-none d-md-none d-lg-flex d-xxl-flex d-xl-flex flex-row justify-content-end align-items-center">
+                <BasicButton
+                  className="m-1 mb-4"
+                  type="submit"
+                  label={
+                    contact === "" ||
+                    shareLinkAd === "" ||
+                    shareLinkIos === "" ||
+                    rateUsAd === "" ||
+                    rateUsIos === ""
+                      ? "Create"
+                      : "Update"
+                  }
+                  onClick={
+                    contact === "" ||
+                    shareLinkAd === "" ||
+                    shareLinkIos === "" ||
+                    rateUsAd === "" ||
+                    rateUsIos === "" ||
+                    (touched.contact && errors.contact) ||
+                    (touched.shareLinkAd && errors.shareLinkAd) ||
+                    (touched.shareLinkIos && errors.shareLinkIos) ||
+                    (touched.rateUsAd && errors.rateUsAd) ||
+                    (touched.rateUsIos && errors.rateUsIos)
+                      ? handleSubmit
+                      : (contact === "" &&
+                          shareLinkAd === "" &&
+                          shareLinkIos === "" &&
+                          rateUsAd === "" &&
+                          rateUsIos === "")
+                        ? handleAddData
+                        : handleUpdateData
+                  }
+                />
               </Col>
             </Row>
 
@@ -70,8 +157,10 @@ const Settings = () => {
               <Col className="m-1 p-4 w-100 h-100d-flex flex-wrap flex-column align-items-start justify-content-start shadow rounded bg-white">
                 <Col className="mt-2" />
                 <TextInput
+                  name="contact"
                   value={contact}
                   label="Contact"
+                  // disabled={true}
                   onChange={(e) => {
                     setContact(e.target.value);
                     handleChange(e);
@@ -88,15 +177,15 @@ const Settings = () => {
                       ""
                     )
                   }
-                  disabled={true}
                 />
                 <Col className="mt-4 " />
                 <h6>{t("Share Link")}:</h6>
                 <Col className="mt-3 m-2">
                   <TextInput
-                    disabled={true}
+                    name="sharelinkAd"
                     value={shareLinkAd}
                     label="For Android"
+                    // disabled={true
                     onChange={(e) => {
                       setSharelinkAd(e.target.value);
                       handleChange(e);
@@ -121,9 +210,10 @@ const Settings = () => {
                 </Col>
                 <Col className="mt-3 m-2">
                   <TextInput
-                    disabled={true}
+                    name="sharelinkIos"
                     value={shareLinkIos}
                     label="For IOS"
+                    // disabled={true}
                     onChange={(e) => {
                       setSharelinkIos(e.target.value);
                       handleChange(e);
@@ -153,9 +243,10 @@ const Settings = () => {
                 <h6> {t("Rating Link")}:</h6>
                 <Col className="mt-3 m-2">
                   <TextInput
+                    name="rateUsAd"
                     value={rateUsAd}
                     label="For Android"
-                    disabled={true}
+                    // disabled={true}
                     onChange={(e) => {
                       setRateUsAd(e.target.value);
                       handleChange(e);
@@ -176,9 +267,10 @@ const Settings = () => {
                 </Col>
                 <Col className="mt-3 mb-5 m-2">
                   <TextInput
-                    disabled={true}
+                    name="rateUsIos"
                     value={rateUsIos}
                     label="For IOS"
+                    // disabled={true}
                     onChange={(e) => {
                       setRateUsIos(e.target.value);
                       handleChange(e);
@@ -199,6 +291,42 @@ const Settings = () => {
                     }
                   />
                 </Col>
+              </Col>
+            </Row>
+            <Row className="d-sm-flex d-flex d-md-flex d-lg-none d-xxl-none d-xl-none flex-row justify-content-between align-items-center">
+              <Col className="d-flex justify-content-end align-items-center">
+                <BasicButton
+                  className="m-1"
+                  type="submit"
+                  label={
+                    contact === "" ||
+                    shareLinkAd === "" ||
+                    shareLinkIos === "" ||
+                    rateUsAd === "" ||
+                    rateUsIos === ""
+                      ? "Create"
+                      : "Update"
+                  }
+                  onClick={  
+                    contact === "" ||
+                    shareLinkAd === "" ||
+                    shareLinkIos === "" ||
+                    rateUsAd === "" ||
+                    rateUsIos === "" ||
+                    (touched.contact && errors.contact) ||
+                    (touched.shareLinkAd && errors.shareLinkAd) ||
+                    (touched.shareLinkIos && errors.shareLinkIos) ||
+                    (touched.rateUsAd && errors.rateUsAd) ||
+                    (touched.rateUsIos && errors.rateUsIos)
+                      ? handleSubmit
+                      : (contact === "" &&
+                          shareLinkAd === "" &&
+                          shareLinkIos === "" &&
+                          rateUsAd === "" &&
+                          rateUsIos === "")
+                        ? handleAddData
+                        : handleUpdateData
+                  }                />
               </Col>
             </Row>
           </>
